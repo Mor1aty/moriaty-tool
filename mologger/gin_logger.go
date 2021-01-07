@@ -1,4 +1,4 @@
-package logger
+package mologger
 
 import (
 	"github.com/gin-gonic/gin"
