@@ -2,7 +2,6 @@ package mowrap
 
 import (
 	"encoding/json"
-	"log"
 	"mime/multipart"
 	"reflect"
 	"strconv"
@@ -19,7 +18,6 @@ func NewWrapParams(param map[string]interface{}) *Params {
 func (wp Params) String() string {
 	paramJson, err := json.Marshal(wp.param)
 	if err != nil {
-		log.Println(err)
 		return ""
 	}
 	return string(paramJson)

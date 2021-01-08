@@ -7,7 +7,6 @@ import (
 	"github.com/Mor1aty/moriaty-tool/moweb/mowrap"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"regexp"
 	"strings"
@@ -39,7 +38,6 @@ func MiddleWare(params []Param) gin.HandlerFunc {
 				body, err := ioutil.ReadAll(c.Request.Body)
 				if err != nil {
 					c.Abort()
-					log.Println(err)
 					c.JSON(http.StatusOK, mowrap.Error(moconstant.CodeServerException, "服务器异常"))
 					return
 				}
@@ -71,12 +69,10 @@ func MiddleWare(params []Param) gin.HandlerFunc {
 						if err != nil {
 							if "http: no such file" == err.Error() {
 								c.Abort()
-								log.Println(err)
 								c.JSON(http.StatusOK, mowrap.Error(moconstant.CodeParamFailure, param.Name+moconstant.MsgParamNull))
 								return
 							}
 							c.Abort()
-							log.Println(err)
 							c.JSON(http.StatusOK, mowrap.Error(moconstant.CodeServerException, "服务器异常"))
 							return
 						}
